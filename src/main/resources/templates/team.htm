@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>$team - BR Lite</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <h1>$team roster</h1>
+    <div class="row">
+        <div class="col">
+            <h2>Hitters</h2>
+            <ul>
+                #foreach($p in $roster)
+                    #if($p.position.type != "Pitcher")
+                        <li><a href="/player/${p.person.id}">${p.position.abbreviation} ${p.jerseyNumber} ${p.person.fullName}</a></li>
+                    #end
+                #end
+            </ul>
+        </div>
+        <div class="col">
+            <h2>Pitchers</h2>
+            <ul>
+                #foreach($p in $roster)
+                    #if($p.position.type == "Pitcher")
+                        <li><a href="/player/${p.person.id}">${p.jerseyNumber} ${p.person.fullName}</a></li>
+                    #end
+                #end
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

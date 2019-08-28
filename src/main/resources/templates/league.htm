@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>BR Lite</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <h1>League</h1>
+    <ul>
+        #foreach($team in $teams)
+        <li><a href="/team/${team.id}"><img src="http://mlb.mlb.com/shared/images/logos/32x32_cap/${team.id}.png">$team.city</a>
+        </li>
+        #end
+    </ul>
+</div>
+</body>
+</html>

@@ -50,7 +50,7 @@ public enum Team {
     }
     public static Team fromId(String id) {
         return Arrays.stream(values())
-                .filter(team -> Integer.toString(team.id).equals(id))
+                .filter(team -> team.name().equalsIgnoreCase(id) || Integer.toString(team.id).equals(id))
                 .findAny()
                 .orElse(null);
     }

@@ -11,6 +11,7 @@ import java.io.Reader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ApiWrapper {
     private static final Gson GSON = new Gson();
@@ -34,8 +35,11 @@ public class ApiWrapper {
 
     public static Map<String, Object> getRoster(String teamId) {
         Map<String, Object> map = new HashMap<>();
-        map.put("teamId", teamId);
-        map.put("team", Team.fromId(teamId));
+        Team t = Team.fromId(teamId);
+        if (t != null) teamId = Integer.toString(t.getId());
+        map.put("teamId", t == null ? teamId : teamId);
+        String teamName = Optional.ofNullable(t).map(Team::getCity).orElse("Team");
+        map.put("teamName", teamName);
         String url = String.format(ROSTER_URL, teamId);
         RosterHolder h = parseJsonFromUrl(url, RosterHolder.class);
         if (h != null) {
@@ -44,6 +48,12 @@ public class ApiWrapper {
         return map;
     }
 
+    /**
+     * Utility function to
+     * @param url The URL containing the json to parse
+     * @param clazz The class to parse to
+     * @return A parsed Object of the requested type
+     */
     public static <T> T parseJsonFromUrl(String url, Class<T> clazz) {
         try {
             Reader r = new InputStreamReader(new URL(url).openStream());

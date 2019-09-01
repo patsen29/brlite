@@ -12,7 +12,7 @@
     <h1>League</h1>
     <ul>
         #foreach($team in $teams)
-        <li><a href="/team/${team.id}"><img src="http://mlb.mlb.com/shared/images/logos/32x32_cap/${team.id}.png">$team.city</a>
+        <li><a href="/team/${team.name()}"><img src="http://mlb.mlb.com/shared/images/logos/32x32_cap/${team.id}.png">$team.city</a>
         </li>
         #end
     </ul>

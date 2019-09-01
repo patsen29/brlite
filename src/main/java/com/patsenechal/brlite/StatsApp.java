@@ -36,7 +36,8 @@ public class StatsApp {
     }
     private static String player(Request req, Response res) {
         String playerId = req.params("playerId");
-        return render(new HashMap<>(), "templates/player.htm");
+        Map<String, Object> data = ApiWrapper.getPlayerData(playerId);
+        return render(data, "templates/player.htm");
     }
 
     private static String render(Map<String, Object> model, String templatePath) {

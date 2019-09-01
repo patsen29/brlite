@@ -1,12 +1,16 @@
+#set($fielding = $player.getFielding())
+#if($fielding.size() > 0)
 <h2>Fielding</h2>
-<table class="table table-hover">
+<table class="table table-hover table-sm table-responsive">
     <thead>
     <tr>
         <th>Year</th>
-        <th>Team</th>
         <th>Age</th>
+        <th>Team</th>
         <th>Pos</th>
         <th>G</th>
+        <th>GS</th>
+        <th>Inn</th>
         <th>PO</th>
         <th>A</th>
         <th>E</th>
@@ -16,9 +20,23 @@
     </tr>
     </thead>
     <tbody>
+    #foreach($line in $fielding)
     <tr>
-        <td>2018</td>
-        <td>TOR</td>
+        <td>$line.season</td>
+        <td>$line.getAge($player.seasonalBirthYear)</td>
+        <td>$line.teamCode</td>
+        <td>$line.pos</td>
+        <td>$line.getStat("games")</td>
+        <td>$line.getStat("gamesStarted")</td>
+        <td>$line.getStat("innings")</td>
+        <td>$line.getStat("putOuts")</td>
+        <td>$line.getStat("assists")</td>
+        <td>$line.getStat("errors")</td>
+        <td>$line.getStat("doublePlays")</td>
+        <td>$line.getStat("fielding")</td>
+        <td>$line.getStat("rangeFactorPerGame")</td>
     </tr>
+    #end
     </tbody>
 </table>
+#end

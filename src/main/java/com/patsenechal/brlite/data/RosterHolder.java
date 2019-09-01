@@ -10,11 +10,11 @@ public class RosterHolder {
     }
 
     public static class RosterEntry {
-        public RosterPerson person;
-        public String jerseyNumber;
-        public RosterPosition position;
-        public RosterStatus status;
-        public int parentTeamId;
+        private RosterPerson person;
+        private String jerseyNumber;
+        private RosterPosition position;
+        private RosterStatus status;
+        private int parentTeamId;
 
         public RosterPerson getPerson() {
             return person;
@@ -29,9 +29,9 @@ public class RosterHolder {
         }
     }
     public static class RosterPerson {
-        public int id;
-        public String fullName;
-        public String link;
+        private int id;
+        private String fullName;
+        private String link;
 
         public int getId() {
             return id;
@@ -41,18 +41,9 @@ public class RosterHolder {
             return fullName;
         }
     }
-    public static class RosterPosition {
-        private String code, name, type, abbreviation;
 
-        public String getType() {
-            return type;
-        }
-        public String getAbbreviation() {
-            return abbreviation;
-        }
-    }
     static class RosterStatus {
-        public String code, description;
+        private String code, description;
     }
 
 }

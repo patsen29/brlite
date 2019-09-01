@@ -10,16 +10,24 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4">Picture</div>
-        <div class="col-sm-8">
-            Name<br>
-            #/Pos, B/T, Ht/Wt, Born, DOB
+        <div class="col-sm-2"><img src="http://content.mlb.com/images/headshots/current/60x60/${id}@2x.png"
+            onerror="this.onerror=null;this.src='https://content.mlb.com/images/headshots/current/60x60/generic@2x.png';"></div>
+        <div class="col">
+            <h1>$player.fullName</h1>
+            Position: $player.primaryPosition.abbreviation,
+            Bats ${player.batArm}, Throws ${player.throwArm},
+            Ht: ${player.height}/Wt: ${player.weight} lb,
+            Born: ${player.birthDate}, Age: ${player.age}
         </div>
     </div>
 
-    #parse("templates/batting.htm")
-
-    #parse("templates/pitching.htm")
+    #if($player.primaryPosition.isPitcher())
+        #parse("templates/pitching.htm")
+        #parse("templates/batting.htm")
+    #else
+        #parse("templates/batting.htm")
+        #parse("templates/pitching.htm")
+    #end
 
     #parse("templates/fielding.htm")
 

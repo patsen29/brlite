@@ -1,10 +1,14 @@
+#set($batting = $player.getHitting())
+#if($batting.size() > 0)
 <h2>Batting</h2>
-<table class="table table-hover">
-<thead>
+<table class="table table-hover table-sm table-responsive">
+    <thead>
     <tr>
         <th>Year</th>
-        <th>Team</th>
         <th>Age</th>
+        <th>Team</th>
+        <th>G</th>
+        <th>PA</th>
         <th>AB</th>
         <th>R</th>
         <th>H</th>
@@ -18,26 +22,43 @@
         <th>Avg</th>
         <th>OBP</th>
         <th>Slg</th>
+        <th>OPS</th>
+        <th>GDP</th>
+        <th>HBP</th>
+        <th>SH</th>
+        <th>SF</th>
+        <th>IBB</th>
     </tr>
     </thead>
     <tbody>
+    #foreach( $line in $batting )
     <tr>
-        <td>2018</td>
-        <td>TOR</td>
-        <td>24</td>
-        <td>500</td>
-        <td>100</td>
-        <td>150</td>
-        <td>30</td>
-        <td>3</td>
-        <td>20</td>
-        <td>50</td>
-        <td>150</td>
-        <td>5</td>
-        <td>3</td>
-        <td>.250</td>
-        <td>.350</td>
-        <td>.450</td>
+        <td>$line.season</td>
+        <td>$line.getAge($player.seasonalBirthYear)</td>
+        <td>$line.teamCode</td>
+        <td>${line.getStat("gamesPlayed")}</td>
+        <td>${line.getStat("plateAppearances")}</td>
+        <td>${line.getStat("atBats")}</td>
+        <td>${line.getStat("runs")}</td>
+        <td>${line.getStat("hits")}</td>
+        <td>${line.getStat("doubles")}</td>
+        <td>${line.getStat("triples")}</td>
+        <td>${line.getStat("homeRuns")}</td>
+        <td>${line.getStat("baseOnBalls")}</td>
+        <td>${line.getStat("strikeOuts")}</td>
+        <td>${line.getStat("stolenBases")}</td>
+        <td>${line.getStat("caughtStealing")}</td>
+        <td>${line.getStat("avg")}</td>
+        <td>${line.getStat("obp")}</td>
+        <td>${line.getStat("slg")}</td>
+        <td>${line.getStat("ops")}</td>
+        <td>${line.getStat("groundIntoDoublePlay")}</td>
+        <td>${line.getStat("hitByPitch")}</td>
+        <td>${line.getStat("sacBunts")}</td>
+        <td>${line.getStat("sacFlies")}</td>
+        <td>${line.getStat("intentionalWalks")}</td>
     </tr>
+    #end
     </tbody>
 </table>
+#end

@@ -54,4 +54,10 @@ public enum Team {
                 .findAny()
                 .orElse(null);
     }
+    public static Team fromId(int id) {
+        return Arrays.stream(values())
+                .filter(team -> team.id == id)
+                .findAny()
+                .orElse(null);
+    }
 }

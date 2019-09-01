@@ -1,44 +1,68 @@
+#set($pitching = $player.getPitching())
+#if($pitching.size() > 0)
 <h2>Pitching</h2>
-<table class="table table-hover">
+<table class="table table-hover table-sm table-responsive">
     <thead>
     <tr>
         <th>Year</th>
-        <th>Team</th>
         <th>Age</th>
-        <th>G</th>
-        <th>GS</th>
+        <th>Team</th>
         <th>W</th>
         <th>L</th>
-        <th>Sv</th>
+        <th>ERA</th>
+        <th>G</th>
+        <th>GS</th>
+        <th>GF</th>
+        <th>CG</th>
+        <th>SH</th>
+        <th>SV</th>
         <th>IP</th>
         <th>H</th>
+        <th>R</th>
+        <th>ER</th>
         <th>HR</th>
         <th>BB</th>
+        <th>IBB</th>
         <th>SO</th>
-        <th>ERA</th>
+        <th>BFP</th>
+        <th>G/AO</th>
+        <th>H/9</th>
+        <th>HR/9</th>
         <th>BB/9</th>
         <th>K/9</th>
-        <th>HR/9</th>
     </tr>
     </thead>
     <tbody>
+    #foreach($line in $pitching)
     <tr>
-        <td>2018</td>
-        <td>TOR</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>$line.season</td>
+        <td>$line.getAge($player.seasonalBirthYear)</td>
+        <td>$line.teamCode</td>
+        <td>$line.getStat("wins")</td>
+        <td>$line.getStat("losses")</td>
+        <td>$line.getStat("era")</td>
+        <td>$line.getStat("gamesPitched")</td>
+        <td>$line.getStat("gamesStarted")</td>
+        <td>$line.getStat("gamesFinished")</td>
+        <td>$line.getStat("completeGames")</td>
+        <td>$line.getStat("shutouts")</td>
+        <td>$line.getStat("saves")</td>
+        <td>$line.getStat("inningsPitched")</td>
+        <td>$line.getStat("hits")</td>
+        <td>$line.getStat("runs")</td>
+        <td>$line.getStat("earnedRuns")</td>
+        <td>$line.getStat("homeRuns")</td>
+        <td>$line.getStat("baseOnBalls")</td>
+        <td>$line.getStat("intentionalWalks")</td>
+        <td>$line.getStat("strikeOuts")</td>
+        <td>$line.getStat("battersFaced")</td>
+        <td>$line.getStat("groundOutsToAirouts")</td>
+        <td>$line.getStat("hitsPer9Inn")</td>
+        <td>$line.getStat("homeRunsPer9")</td>
+        <td>$line.getStat("walksPer9Inn")</td>
+        <td>$line.getStat("strikeoutsPer9Inn")</td>
     </tr>
+    #end
     </tbody>
 </table>
+#end

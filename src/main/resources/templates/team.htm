@@ -16,7 +16,12 @@
             <ul>
                 #foreach($p in $roster)
                     #if($p.position.type != "Pitcher")
-                        <li><a href="/player/${p.person.id}">${p.position.abbreviation} ${p.jerseyNumber} ${p.person.fullName}</a></li>
+                        <li><a href="/player/${p.person.id}">
+                            <img src="https://content.mlb.com/images/headshots/current/60x60/${p.person.id}.png"
+                                 onerror="this.onerror=null;this.src='https://content.mlb.com/images/headshots/current/60x60/generic.png';"
+                                 height="30" width="30">
+                            <code>$p.jerseyNumber</code> $p.person.fullName - $p.position.abbreviation
+                        </a></li>
                     #end
                 #end
             </ul>
@@ -26,7 +31,12 @@
             <ul>
                 #foreach($p in $roster)
                     #if($p.position.type == "Pitcher")
-                        <li><a href="/player/${p.person.id}">${p.jerseyNumber} ${p.person.fullName}</a></li>
+                        <li><a href="/player/${p.person.id}">
+                            <img src="https://content.mlb.com/images/headshots/current/60x60/${p.person.id}.png"
+                                 onerror="this.onerror=null;this.src='https://content.mlb.com/images/headshots/current/60x60/generic.png';"
+                                 height="30" width="30">
+                            <code>$p.jerseyNumber</code> ${p.person.fullName}
+                        </a></li>
                     #end
                 #end
             </ul>

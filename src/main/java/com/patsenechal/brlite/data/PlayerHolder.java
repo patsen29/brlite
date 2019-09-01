@@ -9,8 +9,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class includes the data classes used to interpret the MLB API json,
+ * and all the subclasses needed to do so.
+ */
 public class PlayerHolder {
-    List<Person> people;
+    private List<Person> people;
 
     public Person getPerson() {
         if (people.isEmpty()) {
@@ -135,7 +139,7 @@ public class PlayerHolder {
         private String name;
     }
 
-    static class DisplayName {
+    private static class DisplayName {
         private String displayName;
     }
 

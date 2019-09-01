@@ -28,6 +28,7 @@ public class StatsApp {
         Map<String, Object> map = new HashMap<>();
         map.put("teams", Team.values());
         return render(map, "templates/league.htm");
+        // TODO: Pull standings, and give a more useful front page?
     }
     private static String teamRoster(Request req, Response res) {
         String teamId = req.params("teamId");

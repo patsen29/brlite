@@ -2,6 +2,10 @@ package com.patsenechal.brlite.data;
 
 import java.util.List;
 
+/**
+ * This class includes all the data relating to team rosters, and all the subclasses needed to do so.
+ * It is a strongly typed implementation of the MLB stats API, that it pulls the data from.
+ */
 public class RosterHolder {
     public List<RosterEntry> roster;
 
@@ -43,7 +47,7 @@ public class RosterHolder {
         }
     }
 
-    static class RosterStatus {
+    private static class RosterStatus {
         private String code, description;
     }
 

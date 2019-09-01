@@ -2,6 +2,9 @@ package com.patsenechal.brlite.data;
 
 import java.util.Arrays;
 
+/**
+ * This enum is a lookup table of the 30 MLB teams, used to provide nicer display names, when team data isn't handy.
+ */
 public enum Team {
     BAL(110, "Baltimore"),
     BOS(111, "Boston"),
@@ -48,6 +51,8 @@ public enum Team {
     public String getCity() {
         return city;
     }
+
+    // TODO: These could be cached in a map, for more efficient lookups.
     public static Team fromId(String id) {
         return Arrays.stream(values())
                 .filter(team -> team.name().equalsIgnoreCase(id) || Integer.toString(team.id).equals(id))

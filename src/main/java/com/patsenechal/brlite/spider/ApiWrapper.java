@@ -19,6 +19,11 @@ public class ApiWrapper {
     public static final String PLAYER_URL = "https://statsapi.mlb.com/api/v1/people/%s?hydrate=stats(group=[hitting,pitching,fielding],type=[yearByYear])";
     public static final String ROSTER_URL = "https://statsapi.mlb.com/api/v1/teams/%s/roster";
 
+    /**
+     * Pulls player data from MLB stats api, and turns it into a map, suitable for the Velocity templates
+     * @param playerId The 6-digit MLBAM id
+     * @return A map for velocity, containing id, player if there's a valid player, and error otherwise.
+     */
     public static Map<String, Object> getPlayerData(String playerId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", playerId);
@@ -33,6 +38,11 @@ public class ApiWrapper {
         return map;
     }
 
+    /**
+     * Pulls roster data from MLB stats api, and turns it into a map, suitable for the Velocity template.
+     * @param teamId Either the numeric team id (141 for Tor), or a three letter abbreviation for one of the MLB teams.
+     * @return A velocity map, containing teamId (numeric), teamName, and roster list.
+     */
     public static Map<String, Object> getRoster(String teamId) {
         Map<String, Object> map = new HashMap<>();
         Team t = Team.fromId(teamId);
@@ -49,7 +59,7 @@ public class ApiWrapper {
     }
 
     /**
-     * Utility function to
+     * Utility function to parse json at a given URL, and map it into a given class structure.
      * @param url The URL containing the json to parse
      * @param clazz The class to parse to
      * @return A parsed Object of the requested type

@@ -21,7 +21,8 @@ public class RosterHolder {
         }
 
         public String getJerseyNumber() {
-            return jerseyNumber;
+            if (jerseyNumber == null) return "--";
+            return String.format("%2s", jerseyNumber).replace(' ', '\u00a0');
         }
 
         public RosterPosition getPosition() {

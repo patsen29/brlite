@@ -27,8 +27,15 @@ Potential improvements:
 - Add standings to the league page, to be a bit more useful
 - Fetch 40-man rosters, to have more players available
 - Player search, to find players without links
-- Add secondary info to player pages, such as sprint speed, pitcher repertoire, 
+- Add secondary info to player pages, such as sprint speed, pitcher repertoire, scouting reports, 
     defensive/WAR metrics, and/or projections
+- Add tabs on the frontend, to help paginate stats
+- Add minor league stats
+
+Other undocumented features:
+- In addition to the 30 MLB teams, the /team/{teamId} endpoint also allows for any numeric teamId, which can be used for minor league rosters.
+- The /player/{playerId} endpoint works for all MLBAM ids, including minor leaguers. But for now, only major league stats are displayed.
+  
 
 ---
 

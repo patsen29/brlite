@@ -24,7 +24,7 @@ public class PlayerHolder {
         private String firstName, lastName, fullName, primaryNumber;
         private String birthDate;
         private String height;
-        private int weight;
+        private int weight, currentAge;
         private RosterPosition primaryPosition;
         private List<StatHolder> stats;
         private ArmSide batSide, pitchHand;
@@ -35,6 +35,7 @@ public class PlayerHolder {
         public String getFullName() {
             return fullName;
         }
+        /** The effective birth year, for seasonal age calculations. */
         public int getSeasonalBirthYear() {
             LocalDate dob = LocalDate.parse(birthDate);
             int year = dob.getYear();
@@ -44,9 +45,8 @@ public class PlayerHolder {
                 return year;
             }
         }
-        public int getAge() {
-            int now = LocalDate.now().getYear();
-            return now - getSeasonalBirthYear();
+        public int getCurrentAge() {
+            return currentAge;
         }
         public String getFirstName() {
             return firstName;
@@ -73,6 +73,7 @@ public class PlayerHolder {
             return pitchHand.code;
         }
         public List<StatLine> getStats(StatType statType) {
+            if (stats == null) return Collections.emptyList();
             return stats.stream()
                     .filter(statHolder -> statHolder.isType(statType))
                     .map(statHolder -> statHolder.splits)
@@ -110,7 +111,7 @@ public class PlayerHolder {
         }
         public String getStat(String memberName) {
             JsonPrimitive res = stat.getAsJsonPrimitive(memberName);
-            return res == null ? "?" : res.getAsString();
+            return res == null ? "" : res.getAsString();
         }
         public String getPos() {
             return stat.getAsJsonObject("position").getAsJsonPrimitive("abbreviation").getAsString();

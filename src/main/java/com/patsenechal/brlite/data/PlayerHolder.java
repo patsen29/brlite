@@ -122,10 +122,11 @@ public class PlayerHolder {
             return team;
         }
         public String getTeamCode() {
-            return Optional.ofNullable(team)
+            if (team == null) return "TOT";
+            return Optional.of(team)
                     .map(teamHolder -> Team.fromId(team.id))
                     .map(Enum::name)
-                    .orElse("?");
+                    .orElse(team.name.substring(0, 3).toUpperCase());
         }
     }
     private static class TeamHolder {

@@ -23,8 +23,12 @@ public class ApiWrapper {
         map.put("id", playerId);
 
         String url = String.format(PLAYER_URL, playerId);
-        PlayerHolder.Person person = parseJsonFromUrl(url, PlayerHolder.class).getPerson();
-        map.put("player", person);
+        PlayerHolder playerHolder = parseJsonFromUrl(url, PlayerHolder.class);
+        if (playerHolder != null) {
+            map.put("player", playerHolder.getPerson());
+        } else {
+            map.put("error", "Could not find player with id " + playerId);
+        }
         return map;
     }
 
@@ -40,7 +44,7 @@ public class ApiWrapper {
         return map;
     }
 
-    private static <T> T parseJsonFromUrl(String url, Class<T> clazz) {
+    public static <T> T parseJsonFromUrl(String url, Class<T> clazz) {
         try {
             Reader r = new InputStreamReader(new URL(url).openStream());
             return GSON.fromJson(r, clazz);

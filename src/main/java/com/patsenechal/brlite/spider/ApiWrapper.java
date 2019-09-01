@@ -18,6 +18,7 @@ public class ApiWrapper {
 
     public static final String PLAYER_URL = "https://statsapi.mlb.com/api/v1/people/%s?hydrate=stats(group=[hitting,pitching,fielding],type=[yearByYear])";
     public static final String ROSTER_URL = "https://statsapi.mlb.com/api/v1/teams/%s/roster";
+    // TODO: Have some level of throttling, or caching
 
     /**
      * Pulls player data from MLB stats api, and turns it into a map, suitable for the Velocity templates

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class PlayerHolder {
     List<Person> people;
@@ -38,7 +39,7 @@ public class PlayerHolder {
             LocalDate dob = LocalDate.parse(birthDate);
             int year = dob.getYear();
             if (dob.getMonth().compareTo(Month.JUNE) > 0) {
-                return year - 1;
+                return year + 1;
             } else {
                 return year;
             }
@@ -121,10 +122,13 @@ public class PlayerHolder {
             return team;
         }
         public String getTeamCode() {
-            return Team.fromId(team.id).name();
+            return Optional.ofNullable(team)
+                    .map(teamHolder -> Team.fromId(team.id))
+                    .map(Enum::name)
+                    .orElse("?");
         }
     }
-    public static class TeamHolder {
+    private static class TeamHolder {
         private int id;
         private String name;
     }
